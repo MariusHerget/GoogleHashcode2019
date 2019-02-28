@@ -9,6 +9,8 @@ class Solver(BaseSolver):
         self.input_str = input_str
         self.number_of_pictures, self.row_count = 0, 0
         self.photos = []
+        self.vertical = []
+        self.horizontal = []
         self.results = []
 
         # read all the input

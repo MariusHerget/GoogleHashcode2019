@@ -42,7 +42,24 @@ class BaseSolver(object):
                 "tags": line[2:]\
                 })
 
+                if line[0] == "H":
+                    self.horizontal.append({\
+                    "orientation": line[0],\
+                    "number_of_tags": line[1],\
+                    "tags": line[2:]\
+                    })
+                else:
+                    self.vertical.append({\
+                    "orientation": line[0],\
+                    "number_of_tags": line[1],\
+                    "tags": line[2:]\
+                    })
+        """
+        print(self.horizontal)
+        print(self.vertical)
+"""
 
         print("Problem statement:")
         print("Number of pictures: ", self.number_of_pictures)
         print(self.photos)
+        

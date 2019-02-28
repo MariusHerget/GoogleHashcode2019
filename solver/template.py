@@ -9,10 +9,19 @@ class Solver(BaseSolver):
         self.input_str = input_str
         self.number_of_pictures, self.row_count = 0, 0
         self.photos = []
+        self.vertical = []
+        self.horizontal = []
         self.results = []
 
         # read all the input
         self.read_input()
+         for i in range(0,self.number_of_pictures):
+                line = f.readline().rstrip().split(' ')
+                self.photos.append({\
+                "orientation": line[0],\
+                "number_of_tags": line[1],\
+                "tags": line[2:]\
+                })
 
     def write(self, output_str):
         with open(output_str, 'w') as f:
