@@ -26,3 +26,23 @@ class BaseSolver(object):
         :return: Nothing.
         """
         raise NotImplementedError("This method needs to be implemented.")
+
+    def read_input(self):
+        with open(self.input_str, 'r') as f:
+            first_line = f.readline()
+
+            self.number_of_pictures = int(first_line)
+
+            self.photos = []
+            for i in range(0,self.number_of_pictures):
+                line = f.readline().rstrip().split(' ')
+                self.photos.append({\
+                "orientation": line[0],\
+                "number_of_tags": line[1],\
+                "tags": line[2:]\
+                })
+
+
+        print("Problem statement:")
+        print("Number of pictures: ", self.number_of_pictures)
+        print(self.photos)
