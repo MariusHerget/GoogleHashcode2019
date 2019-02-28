@@ -16,13 +16,17 @@ class Solver(BaseSolver):
         # read all the input
         self.read_input()
 
-    def write(self, output_str):
-        with open(output_str, 'w') as f:
-            f.write(str(len(self.results)))
-            f.write('\n')
-            for s in self.results:
-                f.write(" ".join([str(iii) for iii in list(s)]))
-                f.write('\n')
 
     def solve(self):
-        print("not_implemented_yet")
+        slideshow = [self.photos[0]]
+        tempPhotos = self.photos[1:]
+        while len(tempPhotos) > 0:
+            scores = []
+            for p in tempPhotos:
+                scores.append(self.score(slideshow[-1].get('tags'), p.get('tags')))
+            index = scores.index(max(scores))
+            slideshow.append(tempPhotos[index])
+            tempPhotos.pop(index)
+
+        return slideshow
+

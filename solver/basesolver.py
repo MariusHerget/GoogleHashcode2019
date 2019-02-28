@@ -11,6 +11,20 @@ class BaseSolver(object):
         """
         raise NotImplementedError("This method needs to be implemented.")
 
+    def checkcommontags(self, tags1, tags2):
+        counter = 0
+        for tag in enumerate(tags1):
+            for tag2 in enumerate(tags2):
+                if tag[1] == tag2[1]:
+                    counter += 1
+        return counter
+
+    def score(self, tags1, tags2):
+        i = self.checkcommontags(tags1, tags2)
+        j = len(tags1) - i
+        h = len(tags2) - i
+        return min(i, j, h)
+
     def solve(self):
         """Solves the problem.
         Stores the solution internally.
@@ -19,7 +33,12 @@ class BaseSolver(object):
         """
         raise NotImplementedError("This method needs to be implemented.")
 
-    def write(self, output_str):
+    def write(self, output_str, slideshow):
+        solutionString = str(len(slideshow)) + "\n"
+        for slide in slideshow:
+            solutionString += str(slide.get('index')) + "\n"
+
+        print(solutionString)
         """Writes a solution file with the solved solution.
 
         :param output_str: The output filepath where to save the solution.
@@ -39,7 +58,8 @@ class BaseSolver(object):
                 self.photos.append({\
                 "orientation": line[0],\
                 "number_of_tags": line[1],\
-                "tags": line[2:]\
+                "tags": line[2:],\
+                "index": i\
                 })
 
                 if line[0] == "H":

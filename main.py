@@ -25,7 +25,8 @@ if __name__ == '__main__':
     solver = solver.Solver(args.input)
 
     # solve the problem with given input
-    solver.solve()
+    slideshow = solver.solve()
+    solver.write("", slideshow)
 
     # maybe save create a solution file
     if args.output:
