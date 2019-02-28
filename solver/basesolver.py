@@ -32,7 +32,7 @@ class BaseSolver(object):
             first_line = f.readline()
 
             self.number_of_pictures = int(first_line)
-            self.number_of_pictures_horizontal = 0
+            self.number_of_pictures_vertical = 0
             self.photos = []
             for i in range(0,self.number_of_pictures):
                 line = f.readline().rstrip().split(' ')
@@ -48,7 +48,7 @@ class BaseSolver(object):
                     "number_of_tags": line[1],\
                     "tags": line[2:]\
                     })
-                    self.number_of_pictures_horizontal = self.number_of_pictures_horizontal+1
+                    self.number_of_pictures_vertical= self.number_of_pictures_vertical+1
                 else:
                     self.vertical.append({\
                     "orientation": line[0],\
@@ -56,9 +56,9 @@ class BaseSolver(object):
                     "tags": line[2:]\
                     })
 
-            for c in self.horizontal:
-                for d in self.horizontal:
-                    self.horizontalSlides.append({\
+            for c in self.vertical:
+                for d in self.vertical:
+                    self.verticalSlides.append({\
                         "orientation": c.get('orientation'),\
                         "number_of_tags": int(c.get('number_of_tags'))+ int(d.get('number_of_tags')),\
                         "tags": c.get('tags') + d.get('tags') \
@@ -72,7 +72,7 @@ class BaseSolver(object):
 
         print("Problem statement:")
         print("Number of pictures in horizontal: ", self.number_of_pictures)
-        print(self.number_of_pictures)
+        print(self.verticalSlides)
 
 
         

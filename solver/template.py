@@ -7,7 +7,7 @@ class Solver(BaseSolver):
 
     def __init__(self, input_str):
         self.input_str = input_str
-        self.number_of_pictures, self.row_count = 0, 0
+        self.number_of_pictures, self.row_count, self.number_of_pictures_horizontal = 0, 0, 0
         self.photos = []
         self.vertical = []
         self.horizontal = []
