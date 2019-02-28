@@ -20,8 +20,9 @@ class Solver(BaseSolver):
 
 
     def solve(self):
-        slideshow = [self.photos[0]]
-        tempPhotos = self.photos[1:]
+        pictures = self.horizontal + self.verticalSlides
+        slideshow = [pictures[0]]
+        tempPhotos = pictures[1:]
         while len(tempPhotos) > 0:
             scores = []
             for p in tempPhotos:

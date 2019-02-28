@@ -36,7 +36,11 @@ class BaseSolver(object):
     def write(self, output_str, slideshow):
         solutionString = str(len(slideshow)) + "\n"
         for slide in slideshow:
-            solutionString += str(slide.get('index')) + "\n"
+            solutionString += slide.get('index') + "\n"
+
+        print(output_str)
+        with open(output_str, 'w') as f:
+            f.write(solutionString)
 
         print(solutionString)
         """Writes a solution file with the solved solution.
@@ -44,7 +48,6 @@ class BaseSolver(object):
         :param output_str: The output filepath where to save the solution.
         :return: Nothing.
         """
-        raise NotImplementedError("This method needs to be implemented.")
 
     def read_input(self):
         with open(self.input_str, 'r') as f:
@@ -59,30 +62,33 @@ class BaseSolver(object):
                 "orientation": line[0],\
                 "number_of_tags": line[1],\
                 "tags": line[2:],\
-                "index": i\
+                "index": str(i)\
                 })
 
                 if line[0] == "H":
                     self.horizontal.append({\
                     "orientation": line[0],\
                     "number_of_tags": line[1],\
-                    "tags": line[2:]\
+                    "tags": line[2:],\
+                    "index": str(i)\
                     })
                     self.number_of_pictures_vertical= self.number_of_pictures_vertical+1
                 else:
                     self.vertical.append({\
                     "orientation": line[0],\
                     "number_of_tags": line[1],\
-                    "tags": line[2:]\
+                    "tags": line[2:],\
+                    "index": str(i)\
                     })
 
-            for c in self.vertical:
-                for d in self.vertical:
-                    self.verticalSlides.append({\
-                        "orientation": c.get('orientation'),\
-                        "number_of_tags": int(c.get('number_of_tags'))+ int(d.get('number_of_tags')),\
-                        "tags": c.get('tags') + d.get('tags') \
-                        })
+            for i in range(0, len(self.vertical), 2):
+                self.verticalSlides.append({ \
+                    "orientation": self.vertical[i].get('orientation'), \
+                    "number_of_tags": int(self.vertical[i].get('number_of_tags')) + int(self.vertical[i+1].get('number_of_tags')), \
+                    "tags": self.vertical[i].get('tags') + self.vertical[i+1].get('tags'), \
+                    "index": str(self.vertical[i].get('index')) + " " + str(self.vertical[i+1].get('index'))\
+                    })
+
 
 
         """
