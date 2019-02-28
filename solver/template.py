@@ -6,7 +6,13 @@ class Solver(BaseSolver):
     # 'Get Ready for Hash Code 2018' (https://youtu.be/rosx_Xa-R5Y)
 
     def __init__(self, input_str):
+        self.input_str = input_str
+        self.number_of_pictures, self.row_count = 0, 0
+        self.photos = []
+        self.results = []
 
+        # read all the input
+        self.read_input()
 
     def write(self, output_str):
         with open(output_str, 'w') as f:
@@ -17,20 +23,26 @@ class Solver(BaseSolver):
                 f.write('\n')
 
     def solve(self):
-        print("Not implemented yet.")
+        print("not_implemented_yet")
 
     def read_input(self):
         with open(self.input_str, 'r') as f:
             first_line = f.readline()
 
-            self.row_count, self.column_count, self.min_ingredient, self.max_area = tuple(
-                map(int, first_line.split(' '))
-            )
+            self.number_of_pictures = int(first_line)
 
-            self.grid = []
-            for i in range(self.row_count):
-                self.grid.append(f.readline().rstrip())
+            self.photos = []
+            for i in range(0,self.number_of_pictures):
+                line = f.readline().rstrip().split(' ')
+                self.photos.append({\
+                "orientation": line[0],\
+                "number_of_tags": line[1],\
+                "tags": line[2:]\
+                })
+
+
+
 
         print("Problem statement:")
-        print(self.row_count, self.column_count, self.min_ingredient, self.max_area)
-        print(self.grid)
+        print("Number of pictures: ", self.number_of_pictures)
+        print(self.photos)
