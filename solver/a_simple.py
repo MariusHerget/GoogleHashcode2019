@@ -11,6 +11,8 @@ class Solver(BaseSolver):
         self.photos = []
         self.vertical = []
         self.horizontal = []
+        self.number_of_pictures_horizontal = 0
+        self.horizontalSlides = []
         self.results = []
 
         # read all the input
